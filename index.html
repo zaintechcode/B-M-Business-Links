@@ -133,7 +133,7 @@ button{font-family:var(--font-body);}
 
 
 /* =====================================================================
-   4. NAVIGATION — permanent solid white header, same on every page
+   4. NAVIGATION — sticky / glass-effect header, same on every page
    ===================================================================== */
 
 header.nav{
@@ -142,21 +142,18 @@ header.nav{
   left:0;
   right:0;
   z-index:1000;
+  padding:22px 0;
 
-  padding:14px 0;
+  /* ONLY CHANGE: header is permanently white */
+  background:#fff;
 
-  /* Permanent solid white background */
-  background:#fff !important;
-
-  /* Clean header appearance */
-  box-shadow:0 8px 30px rgba(7,26,53,0.06);
-  border-bottom:1px solid rgba(199,161,90,0.18);
-
-  /* Keep smooth scroll-state transitions */
   transition:
+    background .45s var(--ease),
     padding .45s var(--ease),
     box-shadow .45s var(--ease),
     border-color .45s var(--ease);
+
+  border-bottom:1px solid transparent;
 }
 
 header.nav .container{
@@ -166,48 +163,36 @@ header.nav .container{
 }
 
 
-/* =====================================================================
-   SCROLLED STATE
-   Header remains solid white after scrolling.
-   ===================================================================== */
-
+/* Added by JS once the user scrolls down */
 header.nav.scrolled{
-  background:#fff !important;
+  /* Keep the existing scrolled look, but make it fully white */
+  background:#fff;
+
+  backdrop-filter:blur(16px) saturate(160%);
+  -webkit-backdrop-filter:blur(16px) saturate(160%);
 
   padding:14px 0;
 
   box-shadow:0 8px 30px rgba(7,26,53,0.07);
-  border-bottom:1px solid rgba(199,161,90,0.18);
 
-  /* Prevent glass/transparency effect */
-  backdrop-filter:none;
-  -webkit-backdrop-filter:none;
+  border-bottom:1px solid rgba(199,161,90,0.18);
 }
 
 
-/* =====================================================================
-   INNER PAGES
-   About / Services / Contact / etc.
-   Header is already solid white from page load.
-   ===================================================================== */
-
+/* Inner pages (About/Services/etc.) */
 body.solid-nav header.nav{
-  background:#fff !important;
+  /* Keep existing inner-page styling, only make background solid */
+  background:#fff;
+
+  backdrop-filter:blur(16px) saturate(160%);
+  -webkit-backdrop-filter:blur(16px) saturate(160%);
 
   padding:14px 0;
 
   box-shadow:0 8px 30px rgba(7,26,53,0.06);
+
   border-bottom:1px solid rgba(199,161,90,0.18);
-
-  /* Prevent glass/transparency effect */
-  backdrop-filter:none;
-  -webkit-backdrop-filter:none;
 }
-
-
-/* =====================================================================
-   NAVIGATION TEXT / BRAND
-   ===================================================================== */
 
 body.solid-nav header.nav .brand-text .b1{
   color:var(--navy-mid);
@@ -218,23 +203,15 @@ body.solid-nav .nav-cta{
   color:var(--navy-mid);
 }
 
-
-/* =====================================================================
-   CTA BUTTON
-   ===================================================================== */
-
 body.solid-nav .nav-cta{
   border-color:var(--gold);
 }
 
-
-/* =====================================================================
-   MOBILE BURGER
-   ===================================================================== */
-
 body.solid-nav .burger span{
   background:var(--navy-mid);
 }
+
+
 
 .brand{
   display:flex;
